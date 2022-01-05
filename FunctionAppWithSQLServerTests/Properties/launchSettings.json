@@ -1,7 +1,7 @@
 {
   "profiles": {
     "FunctionAppWithSQLServerTests": {
-      "commandName": "Project"
+      "commandName": "Project",
     }
   }
 }
