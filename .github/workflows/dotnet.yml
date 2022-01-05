@@ -10,9 +10,9 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
+    env:
+      SQL_CONNECTION_STRING: ${{ secrets.SQL_CONNECTION_STRING }}
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET
