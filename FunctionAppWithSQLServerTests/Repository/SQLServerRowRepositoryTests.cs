@@ -13,6 +13,7 @@ namespace FunctionAppWithSQLServer.Repository.Tests
 #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
             string connectionString = Environment.GetEnvironmentVariable("SQL_CONNECTION_STRING");
 #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
