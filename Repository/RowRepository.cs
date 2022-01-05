@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FunctionAppWithSQLServer.Repository
 {
     public interface RowRepository
     {
-        public string GetValue(string key);
+        public string GetFirstValue(string key);
 
     }
 
@@ -46,20 +42,21 @@ namespace FunctionAppWithSQLServer.Repository
 
         }
 
-        public string GetValue(string key)
+        public string GetFirstValue(string key)
         {
-            List<string> results = new List<string>();
             SqlCommand command = this.BuildCommand(key);
             using (SqlDataReader reader = command.ExecuteReader())
             {
-                while(reader.Read() == true)
+                if (reader.Read() == true)
                 {
-
-                    results.Add((string)reader[this._valueColumnName]);
+                    return (string)reader[this._valueColumnName];
+                }
+                else
+                {
+                    throw new Exception("some exception");
                 }
             }
-            return results.First();
-           
+
         }
     }
 }
