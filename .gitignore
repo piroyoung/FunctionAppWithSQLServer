@@ -3,7 +3,7 @@
 
 # runsettings for local unit test
 *.runsettings
-**/launchSettings.json
+FunctionAppWithSQLServer/Properties/launchSettings.json
 
 # Azure Functions localsettings file
 local.settings.json
