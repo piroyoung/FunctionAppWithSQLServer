@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "FunctionAppWithSQLServer": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "SQL_CONNECTION_STRING": "connection string"
+      }
+    }
+  }
+}
