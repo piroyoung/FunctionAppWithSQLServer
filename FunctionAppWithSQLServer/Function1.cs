@@ -30,7 +30,7 @@ namespace FunctionAppWithSQLServer
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                RowRepository repo = SQLServerRowRepository.OfConnection(conn);
+                RowRepository repo = SQLServerRowRepository.OfValues(conn, "key", "value", "[dbo].[values]");
 
                 try
                 {

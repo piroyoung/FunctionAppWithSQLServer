@@ -1,5 +1,6 @@
 using System;
 using System.Data.SqlClient;
+using System.Runtime.CompilerServices;
 
 namespace FunctionAppWithSQLServer.Repository
 {
@@ -23,10 +24,14 @@ namespace FunctionAppWithSQLServer.Repository
             this._valueColumnName = valueColumnName;
             this._tableName = tableName;
         }
+        public static RowRepository OfValues(SqlConnection conn, string keyColumnName, string valueColumnName, string tableName)
+        {
+            return new SQLServerRowRepository(conn, keyColumnName, valueColumnName, tableName);
+        }
 
         public static RowRepository OfConnection(SqlConnection conn)
         {
-            return new SQLServerRowRepository(conn, "id", "value", "[dbo].[values]"); ;
+            return OfValues(conn, "id", "value", "[dbo].[values]"); ;
         }
 
         private SqlCommand BuildCommand(string key)
