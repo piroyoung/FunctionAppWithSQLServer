@@ -9,6 +9,7 @@ using System;
 using System.Data.SqlClient;
 using System.IO;
 using System.Threading.Tasks;
+using System.Web.Http;
 
 namespace FunctionAppWithSQLServer
 {
@@ -37,7 +38,10 @@ namespace FunctionAppWithSQLServer
                     string value = repo.GetFirstValue(name);
                     string responseMessage = $"key: {name}, value: {value}";
                     return new OkObjectResult(responseMessage);
-
+                }
+                catch (SqlException)
+                {
+                    return new InternalServerErrorResult();
                 }
                 catch (Exception ex)
                 {

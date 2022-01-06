@@ -45,16 +45,23 @@ namespace FunctionAppWithSQLServer.Repository
         public string GetFirstValue(string key)
         {
             SqlCommand command = this.BuildCommand(key);
-            using (SqlDataReader reader = command.ExecuteReader())
+            try
             {
-                if (reader.Read() == true)
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    return (string)reader[this._valueColumnName];
+                    if (reader.Read() == true)
+                    {
+                        return (string)reader[this._valueColumnName];
+                    }
+                    else
+                    {
+                        throw new Exception("invalid key has been given");
+                    }
                 }
-                else
-                {
-                    throw new Exception("some exception");
-                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
             }
 
         }
