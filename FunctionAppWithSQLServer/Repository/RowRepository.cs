@@ -31,7 +31,7 @@ namespace FunctionAppWithSQLServer.Repository
 
         public static RowRepository OfConnection(SqlConnection conn)
         {
-            return OfValues(conn, "id", "value", "[dbo].[values]"); ;
+            return OfValues(conn, "id", "value", "[dbo].[values]");
         }
 
         private SqlCommand BuildCommand(string key)
